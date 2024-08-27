@@ -1,0 +1,30 @@
+export const users=[
+    {
+        name:"user1",
+        age:21,
+        email:"user1@gmail.com",
+        profilePicture:"user1.png",
+        cv:"user1_cv.pdf"
+    },
+    {
+        name:"user2",
+        age:21,
+        email:"user2@gmail.com",
+        profilePicture:"user2.png",
+        cv:"user2_cv.pdf"
+    },
+    {
+        name:"user3",
+        age:21,
+        email:"user3@gmail.com",
+        profilePicture:"user3.png",
+        cv:"user3_cv.pdf"
+    },
+    {
+        name:"user4",
+        age:21,
+        email:"user4@gmail.com",
+        profilePicture:"user4.png",
+        cv:"user4_cv.pdf"
+    }
+]
