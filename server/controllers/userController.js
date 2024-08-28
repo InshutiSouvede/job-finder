@@ -2,7 +2,7 @@ const User = require("../models/users")
 
 const getAllUsers = async(req,res)=>{
     try {
-        const users = User.find()
+        const users = await User.find()
         if(users.length>0){
             res.json({users})
         }else{
