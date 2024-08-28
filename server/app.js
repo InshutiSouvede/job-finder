@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose")
+const cors = require('cors')
 const userRouter = require('./routes/userRoutes');
 
 const { USER_NAME, PASSWORD } = require("./credential");
@@ -9,6 +10,8 @@ connect.then((data)=>console.log("Successfully connected to the database"))
 
 const app = express();
 const port = 4500
+
+app.use(cors())
 app.get('/',(req,res)=>{
     res.send("Welcome to root")
 })
