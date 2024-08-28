@@ -1,12 +1,18 @@
 import { useParams } from "react-router-dom"
-import { usersData } from "../userData"
 import { User } from "../types"
+import { useEffect, useState } from "react"
 
 export default function UserDetail() {
   const params = useParams() 
   const id:string = params.id||"1"
-  const user:User|undefined = usersData.find((user:User)=>user.id == Number(id))
-
+  const [user,setUser] = useState<User|null>(null)
+  // const user:User|undefined = usersData.find((user:User)=>user.id == Number(id))
+  useEffect(()=>{
+    fetch(`http://localhost:4500/users/${id}`)
+    .then((response)=>response.json())
+    .then((data)=>setUser(data.user))
+    .catch((error)=>console.log(error))
+  },[id])
   return (
     <>
     <h1>User Details</h1>
