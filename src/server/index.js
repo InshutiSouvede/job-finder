@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const cors = require('cors')
 const userRouter = require('./routes/userRoutes');
+const morgan = require("morgan");
 dotenv.config()
 const USER_NAME = process.env.USER_NAME
 const PASSWORD = process.env.PASSWORD
@@ -11,7 +12,8 @@ connect.then((data)=>console.log("Successfully connected to the database"))
 .catch((err)=> console.log("Could not connect to the database",err))
 
 const app = express();
-// const port = 4500
+app.use(express.json())
+app.use(morgan('dev'))
 
 const port = process.env.PORT
 app.use(cors())
