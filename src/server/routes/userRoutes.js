@@ -1,5 +1,5 @@
 const express = require('express')
-const { getAllUsers, getOneUser, deletUser, addUser, updateUser, uploadFile, middleware } = require('../controllers/userController')
+const { getAllUsers, getOneUser, deletUser, addUser, updateUser} = require('../controllers/userController')
 const { upload } = require('../middlewares/fileUpload')
 const router = express.Router()
 router.get("/", getAllUsers)

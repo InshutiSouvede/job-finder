@@ -38,10 +38,13 @@ const addUser = async (req, res) => {
         .status(400)
         .json({ message: "CV type can only be on of these: " + validDocumentExtensions.join(", ") });
     }
-    const user = new User(req.body);
+    const {name,age,email} = req.body
+    const cv = req.files.cv[0].filename
+    const profilePicture = req.files.profile_picture[0].filename
+    const user = new User({ name,age,email,profilePicture,cv });
 
     const savedUser = await user.save();
-    res.json({ user: "savedUser" }).status(201);
+    res.json({ user: savedUser }).status(201);
   } catch (error) {
     res.json({ error: true, message: error.message }).status(500);
   }
@@ -74,7 +77,6 @@ const deletUser = async (req, res) => {
 module.exports = {
   getAllUsers,
   getOneUser,
-  uploadFile,
   updateUser,
   addUser,
   deletUser,
