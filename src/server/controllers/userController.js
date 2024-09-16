@@ -62,13 +62,14 @@ const updateUser = async (req, res) => {
     res.json({ error: true, message: error.message }).status(500);
   }
 };
+
 const deletUser = async (req, res) => {
   try {
     const id = req.params.id;
     const user = await User.findById(id);
     if (!user) throw new Error(`User with id ${id} is not found`);
 
-    const data = await User.findOneAndDelete(id);
+    const data = await User.deleteOne({ _id: user.id });
     res.json({ data });
   } catch (error) {
     res.json({ error: true, message: error.message }).status(500);
