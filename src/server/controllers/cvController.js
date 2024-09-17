@@ -50,4 +50,19 @@ router.put("/:id", upload.single("cv"), async (req, res) => {
     res.json({ error: true, message: error.message }).status(500);
   }
 });
+router.delete('/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    const user = await User.findById(id)
+    const cv = user.cv
+    const filepath = path.join(__dirname, "../public/uploads/documents", cv)
+    fs.unlink(filepath, () => {
+      console.log("File deleted")
+    })
+    const updatedUser = await User.updateOne({ _id: id }, { cv: '' })
+    res.json({ user: updatedUser }).status(204)
+  } catch (error) {
+    res.json({ error: true, message: error.message }).status(500)
+  }
+})
 module.exports = router;
