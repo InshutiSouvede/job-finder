@@ -1,12 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
-
+const morgan = require("morgan");
 const cors = require('cors')
+
 const userRouter = require('./routes/userRoutes');
 const cvRouter = require('./routes/cvRoutes');
-const morgan = require("morgan");
-const router = require("./controllers/cvController");
+const pictureRouter = require('./routes/profilePictureRoutes');
+
 dotenv.config()
 const USER_NAME = process.env.USER_NAME
 const PASSWORD = process.env.PASSWORD
@@ -27,6 +28,7 @@ app.get('/',(req,res)=>{
 })
 app.use('/users',userRouter)
 app.use('/cv',cvRouter)
+app.use('/picture',pictureRouter)
 app.listen(port, (err) => {
   if (!err) console.log("Connected to ", port);
 });
