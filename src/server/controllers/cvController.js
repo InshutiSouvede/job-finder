@@ -3,13 +3,12 @@ const path = require("path");
 const fs = require("fs");
 const User = require("../models/users");
 const {
-  validDocumentExtensions,
-  upload,
+  validDocumentExtensions
 } = require("../middlewares/fileUpload");
 
 const router = express.Router();
 
-router.get("/:id", async (req, res) => {
+const getUserCv =  async (req, res) => {
   const id = req.params.id;
   const user = await User.findById(id);
   const cv = user.cv;
@@ -17,8 +16,8 @@ router.get("/:id", async (req, res) => {
   console.log(cv, filepath);
   // res.download(filepath)
   res.json({ filename: cv });
-});
-router.put("/:id", upload.single("cv"), async (req, res) => {
+}
+const updatedUserCv = async (req, res) => {
   try {
     const id = req.params.id;
     const user = await User.findById(id);
@@ -49,8 +48,8 @@ router.put("/:id", upload.single("cv"), async (req, res) => {
   } catch (error) {
     res.json({ error: true, message: error.message }).status(500);
   }
-});
-router.delete('/:id', async (req, res) => {
+}
+const deleteUserCv =  async (req, res) => {
   try {
     const id = req.params.id
     const user = await User.findById(id)
@@ -64,5 +63,10 @@ router.delete('/:id', async (req, res) => {
   } catch (error) {
     res.json({ error: true, message: error.message }).status(500)
   }
-})
-module.exports = router;
+}
+
+module.exports = {
+  getUserCv,
+  updatedUserCv,
+  deleteUserCv
+}

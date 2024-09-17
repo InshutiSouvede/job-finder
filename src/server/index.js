@@ -4,6 +4,7 @@ const dotenv = require("dotenv")
 
 const cors = require('cors')
 const userRouter = require('./routes/userRoutes');
+const cvRouter = require('./routes/cvRoutes');
 const morgan = require("morgan");
 const router = require("./controllers/cvController");
 dotenv.config()
@@ -25,7 +26,7 @@ app.get('/',(req,res)=>{
     res.send("Welcome to root")
 })
 app.use('/users',userRouter)
-app.use('/cv',router)
+app.use('/cv',cvRouter)
 app.listen(port, (err) => {
   if (!err) console.log("Connected to ", port);
 });
