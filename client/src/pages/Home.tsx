@@ -2,10 +2,11 @@ import { User } from '../types'
 // import { usersData } from './userData'
 import { useEffect, useState } from 'react'
 import UserCard from '../components/UserCard'
+import apiUrl from '../util'
 export default function Home() {
     const [usersData,setUsersData] = useState([])
     useEffect(()=>{
-      fetch("http://localhost:4500/users")
+      fetch(`${apiUrl}/users`)
       .then((data)=>data.json())
       .then((data)=>{
         console.log("data",data.users)
@@ -20,7 +21,7 @@ export default function Home() {
     return (
       <>
       <h1 className="font-bold text-xl">All Users</h1>
-      <div className='flex gap-1 pr-20'>
+      <div className='flex gap-10 pr-20 flex-wrap'>
       {users}
       </div>
       </>

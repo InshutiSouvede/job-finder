@@ -39,9 +39,15 @@ const addUser = async (req, res) => {
         .json({ message: "CV type can only be on of these: " + validDocumentExtensions.join(", ") });
     }
     const {name,age,email} = req.body
+
     const cv = req.files.cv[0].filename
+    const cvUrl = `public/uploads/documents/${cv}`
+
     const profilePicture = req.files.profile_picture[0].filename
-    const user = new User({ name,age,email,profilePicture,cv });
+    const profile_pictureUrl = `public/uploads/images/${profilePicture}`
+    console.log("Here",profile_pictureUrl,cvUrl)
+
+    const user = new User({ name, age, email, profilePicture:profile_pictureUrl, cv:cvUrl });
 
     const savedUser = await user.save();
     res.json({ user: savedUser }).status(201);

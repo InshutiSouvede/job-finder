@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { User } from "../types";
 import { useEffect, useState } from "react";
+import apiUrl from "../util";
 
 export default function UserDetail() {
     const [deleteUser,setDeleteUser] = useState(false)
@@ -36,8 +37,8 @@ export default function UserDetail() {
     <>
       <h1>User Details</h1>
       {user && (
-        <div className="justify-between p-5 rounded-md shadow-md flex flex-col gap-5 w-max">
-          <img src={`http://localhost:4500${user.profilePicture}`}  alt={user.profilePicture} className="w-[400px] border " />
+        <div className="justify-between p-5 rounded-md shadow-md flex flex-col gap-5 w-max bg-red-100">
+          <img src={`${apiUrl}/${user.profilePicture}`}  alt={user.profilePicture} className="w-[400px] border rounded-md" />
           <p>
             Name: <span>{user.name}</span>
           </p>
@@ -47,7 +48,7 @@ export default function UserDetail() {
           <p>
             Email: <span>{user.email}</span>
           </p>
-          <a className="underline text-blue-700" href={`http://localhost:4500${user.cv}`}  target="_blank">
+          <a className="underline text-blue-700" href={`${apiUrl}/${user.cv}`}  target="_blank">
             CV
           </a>
           <div className="flex gap-5">

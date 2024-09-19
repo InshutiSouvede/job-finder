@@ -43,7 +43,7 @@ const updatedUserCv = async (req, res) => {
       console.log("File deleted");
     });
     const cv = req.file.filename;
-    const updatedUser = await User.updateOne({ _id: id }, { cv: cv });
+    const updatedUser = await User.updateOne({ _id: id }, { cv: `public/uploads/documents/${cv}` });
     res.json({ user: updatedUser }).status(201);
   } catch (error) {
     res.json({ error: true, message: error.message }).status(500);
