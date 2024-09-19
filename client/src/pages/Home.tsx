@@ -13,13 +13,14 @@ export default function Home() {
       })
       .catch((err)=>console.log("err",err))
     },[])
-    const users = usersData.map((user:User)=>(
-     <UserCard key={user._id} user={user}/>
-    ))
+    const users = usersData.map((user:User)=>{
+      console.log("user", user)
+     return <UserCard key={user._id} user={user}/>}
+    )
     return (
       <>
       <h1 className="font-bold text-xl">All Users</h1>
-      <div className='flex flex-col gap-1 pr-20'>
+      <div className='flex gap-1 pr-20'>
       {users}
       </div>
       </>

@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const morgan = require("morgan");
 const cors = require('cors')
+const path = require('path')
 
 const userRouter = require('./routes/userRoutes');
 const cvRouter = require('./routes/cvRoutes');
@@ -23,6 +24,9 @@ app.use(express.static('./public'))
 
 const port = process.env.PORT
 app.use(cors())
+// make files in public accessible through our server on the frontent
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
 app.get('/',(req,res)=>{
     res.send("Welcome to root")
 })

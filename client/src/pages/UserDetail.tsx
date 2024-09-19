@@ -36,18 +36,18 @@ export default function UserDetail() {
     <>
       <h1>User Details</h1>
       {user && (
-        <div className=" border justify-between p-5 rounded-md shadow-md flex flex-col gap-5">
-          <img src={user.profilePicture} alt={user.profilePicture} />
+        <div className="justify-between p-5 rounded-md shadow-md flex flex-col gap-5 w-max">
+          <img src={`http://localhost:4500${user.profilePicture}`}  alt={user.profilePicture} className="w-[400px] border " />
           <p>
             Name: <span>{user.name}</span>
           </p>
           <p>
-            Email: <span>{user.age}</span>
+            Age: <span>{user.age}</span>
           </p>
           <p>
             Email: <span>{user.email}</span>
           </p>
-          <a className="underline text-blue-700" href={user.cv} target="_blank">
+          <a className="underline text-blue-700" href={`http://localhost:4500${user.cv}`}  target="_blank">
             CV
           </a>
           <div className="flex gap-5">
